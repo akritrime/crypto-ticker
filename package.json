@@ -1,0 +1,27 @@
+{
+  "name": "crypto-ticker",
+  "version": "0.0.1",
+  "description": "A Discord bot for following cryptocurrency prices from different exchanges",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/akritrime/crypto-ticker.git"
+  },
+  "keywords": [
+    "Discord",
+    "Bot",
+    "Discord.js",
+    "Discordapp",
+    "discordapp",
+    "cryptocurrency"
+  ],
+  "author": "akritrime",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akritrime/crypto-ticker/issues"
+  },
+  "homepage": "https://github.com/akritrime/crypto-ticker#readme"
+}
