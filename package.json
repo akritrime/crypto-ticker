@@ -4,6 +4,7 @@
   "description": "A Discord bot for following cryptocurrency prices from different exchanges",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +24,12 @@
   "bugs": {
     "url": "https://github.com/akritrime/crypto-ticker/issues"
   },
-  "homepage": "https://github.com/akritrime/crypto-ticker#readme"
+  "homepage": "https://github.com/akritrime/crypto-ticker#readme",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.5.2",
+    "typescript": "^2.9.2"
+  }
 }
