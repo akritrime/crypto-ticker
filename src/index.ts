@@ -1,7 +1,7 @@
 import { Client } from 'discord.js'
-import { ready, pong, commands } from './handlers'
+import { TOKEN } from './constants'
 
-const { TOKEN } = process.env
+import handlers from './handlers'
 
 ;(async function main() {
     const client = new Client()
@@ -13,9 +13,9 @@ const { TOKEN } = process.env
     }
 
     // register the event handlers
-    ready(client)
-    pong(client)
-    commands(client)
+    for (let [_, handler] of Object.entries(handlers)) {
+        handler(client)
+    }
 
     await client.login(TOKEN)
     console.log("Bot logged in.")
