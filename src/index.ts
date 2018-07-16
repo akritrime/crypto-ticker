@@ -1,6 +1,6 @@
 import { Client } from 'discord.js'
-import { TOKEN } from './constants'
 
+import { TOKEN } from './constants'
 import handlers from './handlers'
 
 ;(async function main() {
