@@ -3,7 +3,7 @@ import { CREATOR_ID } from './constants'
 import { isBotCommand } from './utils'
 
 // updates status when ever the bot comes online.
-export function ready(c: Client) {
+function ready(c: Client) {
     const cb = () => {
         c.user.setActivity('CryptoCurrencies', {
             type: 'WATCHING'
@@ -15,7 +15,7 @@ export function ready(c: Client) {
 }
 
 // replies to only pings from the creator. Used for testing purposes
-export function pong(c: Client) {
+function pong(c: Client) {
     const cb = (m: Message) => {
         if (m.author.id === CREATOR_ID && m.content === "!ping") {
             m.channel.send('pong?')
@@ -26,9 +26,11 @@ export function pong(c: Client) {
 }
 
 // detects and executes all the bot commands
-export function commands(c: Client) {
+function commands(c: Client) {
     const cb = (m: Message) => {
-
+        if (m.author.bot) {
+            return
+        }
         const cmd = isBotCommand(m.content, ".ct", c.user.id)
         if (!cmd) {
             if (cmd === "") {
@@ -42,4 +44,10 @@ export function commands(c: Client) {
     }
 
     c.on('message', cb)
+}
+
+export default {
+    ready,
+    pong,
+    commands
 }
