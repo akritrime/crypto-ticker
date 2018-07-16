@@ -6,7 +6,7 @@ import handlers from './handlers'
 ;(async function main() {
     const client = new Client()
 
-    // get the Bot TOKEN 
+    // check if the Bot TOKEN is set 
     if (!TOKEN) {
         console.log("Var TOKEN not set.")
         return
