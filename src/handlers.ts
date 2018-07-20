@@ -1,7 +1,9 @@
 import { Client, Message } from 'discord.js'
 
-import { CREATOR_ID } from './constants'
+import { CREATOR_ID, exchs } from './constants'
 import { isBotCommand } from './utils'
+import cmds from './commands'
+
 
 // updates status when ever the bot comes online.
 function ready(c: Client) {
@@ -10,6 +12,7 @@ function ready(c: Client) {
             type: 'WATCHING'
         })
         console.log("Bot is ready")
+        exchs.init()
     }
 
     c.on('ready', cb)
@@ -32,16 +35,27 @@ function commands(c: Client) {
         if (m.author.bot) {
             return
         }
-        const cmd = isBotCommand(m.content, ".ct", c.user.id)
-        if (!cmd) {
-            if (cmd === "") {
+        
+        // check if the message is a command 
+        const txt = isBotCommand(m.content, ".ct", c.user.id)
+        if (!txt) {
+            if (txt === "") {
                 m.channel.send("no command")
             }
             return
         }
         
-        console.log(cmd)
-        m.channel.send("received the message.")
+        // after getting the command text without the invocation, split them into indivual words to get the all the keywords
+        const cmd = (txt as string).split(" ").map(v => v.trim())
+        
+        // based on the first word of the text, get the command that needs to be executed from the cmds Map
+        const command = cmds.get(cmd[0])
+        if (command) {
+            command.execute(m)
+        } else {
+            m.channel.send('Invalid command')
+        }
+
     }
 
     c.on('message', cb)

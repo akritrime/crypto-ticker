@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/akritrime/crypto-ticker#readme",
   "dependencies": {
+    "ccxt": "^1.16.36",
     "discord.js": "^11.3.2"
   },
   "devDependencies": {
